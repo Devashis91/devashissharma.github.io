@@ -1,1 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
+  <!-- ============================================================
+    ✏️ EDIT #1 — Page Title (Browser tab me jo naam dikhe)
+  ============================================================ -->
+  <title>Devashis Sharma | Portfolio</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <style>
+    /* ─── COLORS (ek jagah se sab badlo) ─── */
+    :root {
+      --accent: #1a73e8;       /* ✏️ Main color — yahan badlo */
+      --accent2: #0d47a1;
+      --bg: #f9f9f9;
+      --card: #ffffff;
+      --text: #1a1a2e;
+      --muted: #555;
+      --border: #e0e0e0;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* ─── NAVBAR ─── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(10px);
+      padding: 16px 40px;
+      display: flex; justify-content: space-between; align-items: center;
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem; color: var(--accent); font-weight: 700;
+    }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--text);
+      font-weight: 500; font-size: 0.95rem;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 90vh;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; text-align: center;
+      padding: 60px 20px;
+      background: linear-gradient(135deg, #f0f4ff 0%, #fff 60%, #e8f0fe 100%);
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: -80px; right: -80px;
+      width: 350px; height: 350px;
+      background: radial-gradient(circle, #1a73e820, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero-badge {
+      background: #e8f0fe; color: var(--accent);
+      padding: 6px 18px; border-radius: 50px;
+      font-size: 0.85rem; font-weight: 500;
+      margin-bottom: 20px; display: inline-block;
+      letter-spacing: 0.5px;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      color: var(--text); line-height: 1.15;
+      margin-bottom: 16px;
+    }
+    .hero h1 span { color: var(--accent); }
+    .hero p {
+      font-size: 1.1rem; color: var(--muted);
+      max-width: 540px; margin: 0 auto 32px;
+    }
+    .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+    .btn {
+      padding: 13px 30px; border-radius: 8px;
+      font-size: 0.95rem; font-weight: 500;
+      text-decoration: none; cursor: pointer;
+      border: none; transition: all 0.3s;
+    }
+    .btn-primary {
+      background: var(--accent); color: #fff;
+      box-shadow: 0 4px 15px #1a73e840;
+    }
+    .btn-primary:hover {
+      background: var(--accent2);
+      transform: translateY(-2px);
+    }
+    .btn-outline {
+      border: 2px solid var(--accent); color: var(--accent);
+      background: transparent;
+    }
+    .btn-outline:hover {
+      background: var(--accent); color: #fff;
+      transform: translateY(-2px);
+    }
+
+    /* ─── SECTION BASE ─── */
+    section { padding: 80px 20px; max-width: 900px; margin: 0 auto; }
+    .section-tag {
+      color: var(--accent); font-size: 0.8rem;
+      font-weight: 600; letter-spacing: 2px;
+      text-transform: uppercase; margin-bottom: 8px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem; color: var(--text);
+      margin-bottom: 40px;
+    }
+    .divider {
+      width: 50px; height: 4px;
+      background: var(--accent); border-radius: 2px;
+      margin: 12px 0 40px;
+    }
+
+    /* ─── ABOUT ─── */
+    .about-card {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 40px;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.05);
+      display: flex; gap: 32px; align-items: center;
+      flex-wrap: wrap;
+    }
+    .about-avatar {
+      width: 100px; height: 100px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.5rem; color: white;
+      font-family: 'Playfair Display', serif;
+      flex-shrink: 0;
+    }
+    .about-text h3 {
+      font-size: 1.3rem; font-weight: 600; margin-bottom: 10px;
+    }
+    .about-text p { color: var(--muted); font-size: 1rem; }
+
+    /* ─── SKILLS ─── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 20px;
+    }
+    .skill-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px 20px;
+      text-align: center;
+      transition: all 0.3s;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+    }
+    .skill-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(26,115,232,0.12);
+    }
+    .skill-icon {
+      font-size: 2rem; margin-bottom: 12px;
+      color: var(--accent);
+    }
+    .skill-card h4 { font-size: 0.95rem; font-weight: 600; color: var(--text); }
+    .skill-card p { font-size: 0.78rem; color: var(--muted); margin-top: 4px; }
+
+    /* ─── PROJECTS ─── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 24px;
+    }
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 24px;
+      transition: all 0.3s;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+      position: relative; overflow: hidden;
+    }
+    .project-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+    }
+    .project-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(26,115,232,0.12);
+    }
+    .project-tag {
+      background: #e8f0fe; color: var(--accent);
+      font-size: 0.72rem; font-weight: 600;
+      padding: 3px 10px; border-radius: 20px;
+      display: inline-block; margin-bottom: 12px;
+      text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .project-card h3 { font-size: 1.1rem; margin-bottom: 10px; }
+    .project-card p { font-size: 0.88rem; color: var(--muted); }
+    .project-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      margin-top: 16px; color: var(--accent);
+      font-size: 0.85rem; font-weight: 600;
+      text-decoration: none;
+      transition: gap 0.2s;
+    }
+    .project-link:hover { gap: 10px; }
+
+    /* ─── CONTACT ─── */
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px; align-items: start;
+    }
+    .contact-info h3 { font-size: 1.2rem; margin-bottom: 16px; }
+    .contact-info p { color: var(--muted); font-size: 0.95rem; margin-bottom: 24px; }
+    .social-links { display: flex; flex-direction: column; gap: 12px; }
+    .social-link {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none; color: var(--text);
+      padding: 12px 16px;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 10px; font-size: 0.9rem;
+      transition: all 0.3s;
+    }
+    .social-link i { color: var(--accent); width: 18px; }
+    .social-link:hover {
+      border-color: var(--accent);
+      transform: translateX(4px);
+    }
+    .contact-form { display: flex; flex-direction: column; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group label {
+      font-size: 0.85rem; font-weight: 500; color: var(--text);
+    }
+    .form-group input,
+    .form-group textarea {
+      padding: 12px 16px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem; color: var(--text);
+      background: var(--card);
+      transition: border-color 0.3s;
+      resize: none;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none; border-color: var(--accent);
+    }
+    .form-submit {
+      background: var(--accent); color: white;
+      padding: 13px; border: none; border-radius: 10px;
+      font-size: 0.95rem; font-weight: 600;
+      cursor: pointer; transition: all 0.3s;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .form-submit:hover {
+      background: var(--accent2);
+      transform: translateY(-2px);
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      text-align: center;
+      padding: 30px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 640px) {
+      nav { padding: 14px 20px; }
+      .nav-links { gap: 16px; }
+      .contact-wrap { grid-template-columns: 1fr; }
+      .about-card { flex-direction: column; text-align: center; }
+    }
+
+    /* ─── SCROLL ANIMATION ─── */
+    .fade-in {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+  <!-- ════════════════════════════════
+    NAVBAR
+  ════════════════════════════════ -->
+  <nav>
+    <!-- ✏️ EDIT #2 — Navbar Logo (tumhara naam) -->
+    <div class="nav-logo">Devashis.</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ════════════════════════════════
+    HERO SECTION
+  ════════════════════════════════ -->
+  <div class="hero">
+    <!-- ✏️ EDIT #3 — Hero Badge (role/tagline) -->
+    <div class="hero-badge">📊 Commerce Student & Business Enthusiast</div>
+
+    <!-- ✏️ EDIT #4 — Main Heading -->
+    <h1>Hi, I'm <span>Devashis Sharma</span></h1>
+
+    <!-- ✏️ EDIT #5 — Subtitle -->
+    <p>A passionate commerce student skilled in business tools, financial software, and AI-powered social media management.</p>
+
+    <div class="hero-btns">
+      <!-- ✏️ EDIT #6 — Button text & link -->
+      <a href="#projects" class="btn btn-primary">View My Work</a>
+      <a href="#contact" class="btn btn-outline">Contact Me</a>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════
+    ABOUT SECTION
+  ════════════════════════════════ -->
+  <section id="about" class="fade-in">
+    <div class="section-tag">Who I Am</div>
+    <div class="section-title">About Me</div>
+    <div class="divider"></div>
+    <div class="about-card">
+      <!-- ✏️ EDIT #7 — Avatar initials (tumhara first letter) -->
+      <div class="about-avatar">D</div>
+      <div class="about-text">
+        <!-- ✏️ EDIT #8 — Name & About text -->
+        <h3>Devashis Sharma</h3>
+        <p>
+          I am 18 years old and I am a commerce student who knows business and calculations.
+          I enjoy working with business tools and understanding how companies operate.
+          I'm passionate about using AI and technology to solve real-world business problems.
+        </p>
+        <!-- ✏️ EDIT #9 — Apni koi bhi line add ya remove karo -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════
+    SKILLS SECTION
+  ════════════════════════════════ -->
+  <section id="skills" class="fade-in">
+    <div class="section-tag">What I Know</div>
+    <div class="section-title">My Skills</div>
+    <div class="divider"></div>
+    <div class="skills-grid">
+
+      <!-- ✏️ EDIT #10 — Har skill card ko edit/copy/delete karo -->
+      <!-- SKILL CARD FORMAT:
+           icon: fontawesome class (https://fontawesome.com/icons)
+           h4: skill naam
+           p: short description
+      -->
+
+      <div class="skill-card">
+        <div class="skill-icon"><i class="fa-solid fa-file-excel"></i></div>
+        <h4>MS Excel</h4>
+        <p>Data entry, formulas & spreadsheet management</p>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon"><i class="fa-solid fa-table"></i></div>
+        <h4>Airtable</h4>
+        <p>Database management & project tracking</p>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon"><i class="fa-solid fa-calculator"></i></div>
+        <h4>Tally with GST</h4>
+        <p>Accounting, billing & GST filing</p>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon"><i class="fa-solid fa-robot"></i></div>
+        <h4>AI Tools</h4>
+        <p>AI for social media management & content</p>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon"><i class="fa-solid fa-lightbulb"></i></div>
+        <h4>Creative Thinking</h4>
+        <p>Problem-solving with fresh ideas</p>
+      </div>
+
+      <!-- ✏️ Nayi skill add karni ho toh upar wala block copy karo -->
+
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════
+    PROJECTS SECTION
+  ════════════════════════════════ -->
+  <section id="projects" class="fade-in">
+    <div class="section-tag">My Work</div>
+    <div class="section-title">Projects</div>
+    <div class="divider"></div>
+    <div class="projects-grid">
+
+      <!-- ✏️ EDIT #11 — Har project card edit/copy/delete karo -->
+      <!-- PROJECT CARD FORMAT:
+           project-tag: category
+           h3: project naam
+           p: description
+           href: project link (# agar link nahi hai)
+      -->
+
+      <div class="project-card">
+        <span class="project-tag">MS Excel</span>
+        <h3>Business Expense Tracker</h3>
+        <p>A monthly expense tracking sheet with automated totals and GST calculations built in Excel.</p>
+        <!-- ✏️ Link hai toh # ki jagah woh daalo -->
+        <a href="#" class="project-link">View Project <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <div class="project-card">
+        <span class="project-tag">Airtable</span>
+        <h3>Inventory Management Base</h3>
+        <p>Organized product inventory database with categories, stock tracking and supplier details.</p>
+        <a href="#" class="project-link">View Project <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <div class="project-card">
+        <span class="project-tag">AI + Social Media</span>
+        <h3>AI Content Calendar</h3>
+        <p>Used AI tools to plan and schedule a full month of social media content for a business page.</p>
+        <a href="#" class="project-link">View Project <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <!-- ✏️ Naya project add karna ho toh upar wala block copy karo -->
+
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════
+    CONTACT SECTION
+  ════════════════════════════════ -->
+  <section id="contact" class="fade-in">
+    <div class="section-tag">Get In Touch</div>
+    <div class="section-title">Contact Me</div>
+    <div class="divider"></div>
+    <div class="contact-wrap">
+      <div class="contact-info">
+        <h3>Let's connect!</h3>
+        <!-- ✏️ EDIT #12 — Contact description -->
+        <p>I'm open to internships, freelance projects, or just a good conversation about business & tech.</p>
+
+        <div class="social-links">
+
+          <!-- ✏️ EDIT #13 — Apne social links daalo, jo nahi hai delete karo -->
+
+          <a href="https://www.linkedin.com/in/devashis-sharma-2433a1203/" target="_blank" class="social-link">
+            <i class="fa-brands fa-linkedin"></i> LinkedIn — Devashis Sharma
+          </a>
+
+          <!-- ✏️ Email link — apna email daalo -->
+          <a href="mailto:youremail@gmail.com" class="social-link">
+            <i class="fa-solid fa-envelope"></i> youremail@gmail.com
+          </a>
+
+          <!-- ✏️ Instagram agar hai toh uncomment karo (<!-- hatao) -->
+          <!--
+          <a href="https://instagram.com/yourusername" target="_blank" class="social-link">
+            <i class="fa-brands fa-instagram"></i> @yourusername
+          </a>
+          -->
+
+        </div>
+      </div>
+
+      <!-- ✏️ EDIT #14 — Contact Form -->
+      <!-- NOTE: Ye form abhi sirf design hai.
+           Free mein kaam karwana ho toh:
+           action="https://formspree.io/f/XXXXXXXX" daalo
+           (formspree.io pe free account banao, ID milegi)
+      -->
+      <form class="contact-form" action="https://formspree.io/f/XXXXXXXX" method="POST">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" name="name" placeholder="John Doe" required/>
+        </div>
+        <div class="form-group">
+          <label>Your Email</label>
+          <input type="email" name="email" placeholder="john@example.com" required/>
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea name="message" rows="4" placeholder="Hi Devashis, I'd like to..." required></textarea>
+        </div>
+        <button type="submit" class="form-submit">Send Message 🚀</button>
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════
+    FOOTER
+  ════════════════════════════════ -->
+  <!-- ✏️ EDIT #15 — Footer text -->
+  <footer>
+    <p>© 2025 Devashis Sharma — Made with ❤️ | devashissharma.github.io</p>
+  </footer>
+
+  <!-- ─── Scroll Animation Script ─── -->
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('visible');
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
